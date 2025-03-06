@@ -1,10 +1,9 @@
 package ch.bosshard.matteo.blockblast;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class HelloApplication extends Application {
@@ -17,6 +16,7 @@ public class HelloApplication extends Application {
     };
 
     Game game;
+    Render render;
 
     public static void main(String[] args) {
         launch(args);
@@ -26,12 +26,11 @@ public class HelloApplication extends Application {
     public void start(Stage primaryStage) {;
         VBox root = new VBox(20);
 
-        game = new Game(GRID_SIZE, CELL_SIZE, GRID_COLOR, BLOCK_COLORS);
-        game.initializeGame();
+        render = new Render();
 
-        HBox header = createHeader();
-        GridPane playGrid = game.getPlayGrid();
-        HBox blockSelection = game.getBlockGrid();
+        HBox header = render.getHeader();
+        GridPane playGrid = render.getPlayGrid();
+        HBox blockSelection = render.getBlockGrid();
 
         root.getChildren().addAll(header, playGrid, blockSelection);
 
@@ -39,15 +38,5 @@ public class HelloApplication extends Application {
         primaryStage.setTitle("Block Blast");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    private HBox createHeader() {
-        HBox header= new HBox(10);
-
-        Label scoreLabel = new Label(String.valueOf("Score: " + game.getScore()));
-        Label multiplierLabel = new Label(String.valueOf("Multiplier: " + game.getMultiplier()));
-        header.getChildren().addAll(scoreLabel, multiplierLabel);
-
-        return header;
     }
 }
