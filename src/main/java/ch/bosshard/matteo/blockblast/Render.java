@@ -18,8 +18,8 @@ public class Render {
     private HBox header;
     private Game game;
 
-    public Render() {
-        game = new Game();
+    public Render(Game game) {
+        this.game = game;
         playGrid = clearPlayGrid();
         blockGrid = initializeBlockGrid();
         header = createHeader();
@@ -34,7 +34,7 @@ public class Render {
         }
     }
 
-    private Rectangle createRectangle(int color) {
+    public Rectangle createRectangle(int color) {
         Rectangle rec = new Rectangle(CELL_SIZE, CELL_SIZE, COLOR_PALETTE[color]);
         rec.setStroke(Color.DARKGRAY);
         rec.setStrokeWidth(1);
@@ -62,10 +62,7 @@ public class Render {
     private HBox initializeBlockGrid() {
         HBox blockSelection = new HBox(10);
         for (int i = 0; i < 3; i++) {
-            Rectangle rec = new Rectangle(CELL_SIZE, CELL_SIZE, COLOR_PALETTE[i + 1]);
-            rec.setStroke(Color.DARKGRAY);
-            rec.setStrokeWidth(1);
-            blockSelection.getChildren().add(rec);
+            blockSelection.getChildren().add(game.getBlocks()[i].createBlock());
         }
         return blockSelection;
     }
