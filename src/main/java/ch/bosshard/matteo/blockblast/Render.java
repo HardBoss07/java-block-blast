@@ -25,6 +25,22 @@ public class Render {
         header = createHeader();
     }
 
+    public void setPlayGridWithData(int[][] data) {
+        playGrid.getChildren().clear();
+        for (int i = 0; i < GRID_SIZE; i++) {
+            for (int j = 0; j < GRID_SIZE; j++) {
+                playGrid.add(createRectangle(data[i][j]), j, i);
+            }
+        }
+    }
+
+    private Rectangle createRectangle(int color) {
+        Rectangle rec = new Rectangle(CELL_SIZE, CELL_SIZE, COLOR_PALETTE[color]);
+        rec.setStroke(Color.DARKGRAY);
+        rec.setStrokeWidth(1);
+        return rec;
+    }
+
     private GridPane clearPlayGrid() {
         GridPane playGrid = new GridPane();
         playGrid.setMaxWidth(CELL_SIZE * Render.GRID_SIZE);

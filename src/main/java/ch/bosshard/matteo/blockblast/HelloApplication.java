@@ -32,6 +32,19 @@ public class HelloApplication extends Application {
         GridPane playGrid = render.getPlayGrid();
         HBox blockSelection = render.getBlockGrid();
 
+        int[][] testData = {
+                {0,1,0,3,0,0,0,0},
+                {0,0,0,0,0,0,0,0},
+                {0,0,2,0,0,1,0,0},
+                {0,0,0,0,0,0,0,0},
+                {0,0,0,1,0,0,3,0},
+                {0,0,0,0,2,0,0,0},
+                {0,0,0,0,0,0,2,0},
+                {0,0,1,1,2,3,2,0}
+        };
+
+        render.setPlayGridWithData(testData);
+
         root.getChildren().addAll(header, playGrid, blockSelection);
 
         Scene scene = new Scene(root, 350, 600);
